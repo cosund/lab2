@@ -94,21 +94,55 @@ class DinnerModel {
   //query argument, text, if passed only returns dishes that contain the query in name or one of the ingredients.
   //if you don't pass any query, all the dishes will be returned
   getAllDishes(type, query) {
-    return this.dishes.filter(function (dish) {
-      let found = true;
-      if (query) {
-        found = false;
-        dish.extendedIngredients.forEach(function (ingredient) {
-          if (ingredient.name.indexOf(query) !== -1) {
-            found = true;
-          }
-        });
-        if (dish.name.indexOf(query) !== -1) {
-          found = true;
-        }
-      }
-      return (dish.dishTypes.includes(type) || !type) && found;
-    });
+    const ENDPOINT = 'http://sunset.nada.kth.se:8080/iprog2/group/32';
+    const API_KEY = '3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767';
+    // return this.dishes.filter(function (dish) {
+    //   let found = true;
+    //   if (query) {
+    //     found = false;
+    //     dish.extendedIngredients.forEach(function (ingredient) {
+    //       if (ingredient.name.indexOf(query) !== -1) {
+    //         found = true;
+    //       }
+    //     });
+    //     if (dish.name.indexOf(query) !== -1) {
+    //       found = true;
+    //     }
+    //   }
+    //   return (dish.dishTypes.includes(type) || !type) && found;
+    // });
+    var fetchAddress = ENDPOINT;
+
+    if((type == null) && (query != null)){
+      fetchAddress = fetchAddress + "/complexSearch" + "?query=" + query;
+    }
+    else if((type != null) && (query == null)){
+      fetchAddress = fetchAddress + "/complexSearch" + "?type=" + type;
+    }
+    else if((type != null) && (query != null)){
+      fetchAddress = fetchAddress + "/recipes/Search?query=all";
+    }
+    else if((type == null) && (query == null)){
+      console.log("båda undefuned");
+      fetchAddress = fetchAddress + "/recipes/Search?query=all";
+    }
+    console.log(ENDPOINT);
+    console.log(query);
+
+      fetch(fetchAddress, {
+  	"method": "GET",
+  	"headers": {
+      "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+		"x-rapidapi-key": "SIGN-UP-FOR-KEY"
+  	}
+  })
+  .then(response => {
+  	console.log(response);
+  })
+  .catch(err => {
+  	console.log(err);
+  });
+
   }
 
   //Returns a dish of specific ID
