@@ -3,8 +3,7 @@ class DinnerModel {
 
   constructor() {
     this.dishes = dishesConst;
-    this.guests = 0;
-    this.menu = [];
+
     //TODO Lab 1
     // implement the data structure that will hold number of guests
     // and selected dishes for the dinner menu
@@ -13,81 +12,40 @@ class DinnerModel {
 
   setNumberOfGuests(num) {
     //TODO Lab 1
-    this.guests = num > 0 ? num : 1;
   }
 
   getNumberOfGuests() {
     //TODO Lab 1
-    console.log(this);
-    return this.guests;
   }
 
   //Returns the dishes that are on the menu for selected type
   getSelectedDishes(type) {
     //TODO Lab 1
-    //procedural
-    /*
-    const listOfDishes = [];
-    this.dishes.forEach(dish => {
-      if(dish.dishTypes.includes(type))
-        listOfDishes.push(dish);
-    });
-
-    return listOfDishes;
-    */
-    //functional
-    return this.menu.filter(e => e.dishTypes.includes(type));
   }
 
   //Returns all the dishes on the menu.
   getFullMenu() {
     //TODO Lab 1
-    return this.menu;
   }
 
   //Returns all ingredients for all the dishes on the menu.
   getAllIngredients() {
     //TODO Lab 1
-    //procedural
-    /*
-    const listOfIngrediens = [];
-    this.dishes.forEach(dish => {
-      dish.extendedIngredients.forEach(ingredient => {
-        if(!listOfDishes.includes(ingredient.name))
-          listOfIngrediens.push(ingredient.name);
-      });
-    });
-    return listOfIngrediens;
-    */
-    return this.menu.map(({extendedIngredients}) => extendedIngredients).flat();
   }
 
   //Returns the total price of the menu (price per serving of each dish multiplied by number of guests).
   getTotalMenuPrice() {
     //TODO Lab 1
-    //procedural
-    /*
-    var totalPrice = 0;
-    this.dishes.forEach(dish => {
-      dish.
-    })
-    */
-    //functional
-    let totalSum = this.menu.reduce((currentSum, dish) => currentSum + dish.pricePerServing, 0);
-    return (totalSum * this.guests);
   }
 
-  //Adds the passed dish to the menu.
+  //Adds the passed dish to the menu. 
   addDishToMenu(dish) {
     //TODO Lab 1
-    this.menu.push(dish);
   }
 
   //Removes dish with specified id from menu
   removeDishFromMenu(id) {
     //TODO Lab 1
-    this.menu = this.menu.filter(dish => dish.id !== id);
-    return this.menu;
   }
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
@@ -399,3 +357,4 @@ function deepFreeze(o) {
 }
 
 deepFreeze(dishesConst);
+
