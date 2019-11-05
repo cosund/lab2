@@ -37,6 +37,13 @@ describe("DinnerModel", () => {
       model.setNumberOfGuests(1);
       expect(model.getNumberOfGuests()).to.equal(1);
     });
+    it("can't be lower then 1", () => {
+      model.setNumberOfGuests(0);
+      expect(model.getNumberOfGuests()).to.equal(1);
+
+      model.setNumberOfGuests(-1);
+      expect(model.getNumberOfGuests()).to.equal(1);
+    });
   });
 
   describe("getting individual dishes", () => {
