@@ -3,6 +3,7 @@ window.onload = function () {
   //We instantiate our model
   const model = new DinnerModel();
 
+  const startView = new StartView($("#startView"),model);
   const container = document.getElementsByClassName("page-content")[0]
   const view = new OverviewView(container, model);
   view.render()

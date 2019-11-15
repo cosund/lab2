@@ -2,10 +2,15 @@ class OverviewView {
     constructor(container, model) {
         this.container = container;
         this.model = model;
+        this.title = container.find("#title");
     }
-
+    setTitle(title){
+      this.title.css("display", "flex");
+      this.title.html(title); 
+    }
     // An example of creating HTML procedurally. Think about the pros and cons of this approach.
     render() {
+      /*const arr = ["pirate", "wizard", "lizard", "poppy"];
       const paragraph = this.container.appendChild(document.createElement('P'))
       paragraph.innerHTML = "This dinner will be Awesome!";
 
@@ -20,11 +25,13 @@ class OverviewView {
 
       const list = this.container.appendChild(document.createElement('UL'))
 
-      for(const food of ["Bread!", "Ham!", "Pizza!"]) {
+      for(const food of arr) {
         list.appendChild(document.createElement('UL')).innerHTML = food;
       }
 
-      this.afterRender();
+      const btn = this.container.appendChild(document.createElement('BUTTON'))
+      btn.innerHTML = "Click";
+      this.afterRender();*/
     }
 
     afterRender() {
